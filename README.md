@@ -289,15 +289,6 @@ POST /hypotheses/start
 
 Ce projet est développé dans le cadre d'un Projet de Fin d'Études (Licence Data Analytics, FSTT).
 
-### Auteur
-- **Étudiant** : [Votre Nom]
-- **Formation** : Licence Data Analytics
-- **Établissement** : Université Abdelmalek Essaâdi - FSTT
-- **Année** : 2025-2026
-
-### Licence
-Ce projet est sous licence académique.
-
 ## 📞 Support
 
 Pour toute question ou problème :
