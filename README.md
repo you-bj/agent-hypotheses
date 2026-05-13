@@ -95,9 +95,51 @@ python main.py
 
 Le serveur démarre sur `http://localhost:8000`
 
-## 📚 Documentation API
+## 📚 Comment Utiliser l'Agent
 
-### Endpoints disponibles
+### ⚠️ Important : L'agent est une API REST, pas un programme terminal
+
+Quand vous lancez `python main.py`, l'agent ne pose pas les questions directement dans le terminal. Il démarre un **serveur web API** sur `http://localhost:8000`.
+
+### 🚀 Étapes pour utiliser l'agent
+
+#### 1. Démarrer le serveur
+```bash
+python main.py
+# Output attendu :
+# INFO:     Uvicorn running on http://127.0.0.1:8000
+# INFO:     Started server process
+```
+
+#### 2. Accéder à l'interface API
+Ouvrez votre navigateur et allez sur :
+```
+http://localhost:8000/docs
+```
+
+#### 3. Lancer le dialogue d'hypothèses
+1. Cherchez l'endpoint **POST /hypotheses/start**
+2. Cliquez sur **"Try it out"**
+3. Cliquez sur **"Execute"** (sans paramètres)
+4. L'agent commence le dialogue avec la première question
+
+#### 4. Répondre aux 22 questions
+L'agent va vous poser les questions une par une :
+- **Bloc 1** (H1-H7) : Ventes, clients, prix, croissance
+- **Bloc 2** (H8-H12) : Type activité, fabrication, fournisseurs  
+- **Bloc 3** (H13-H21) : Charges fixes, loyer, salaires, marketing
+- **Bloc 4** (H22) : Nature clients, délais encaissement
+
+#### 5. Obtenir les résultats
+À la fin des 22 questions, l'agent génère automatiquement :
+- ✅ **JSON structuré** avec toutes les hypothèses
+- ✅ **Validation Chauvin** (3 règles financières)
+- ✅ **3 scénarios** (pessimiste, réaliste, optimiste)
+- ✅ **Messages pédagogiques** si alertes
+
+### 📋 Documentation API
+
+#### Endpoints disponibles
 
 | Méthode | Endpoint | Description | Statut |
 |---------|----------|-------------|--------|
@@ -107,8 +149,26 @@ Le serveur démarre sur `http://localhost:8000`
 | GET | `/hypotheses/questions` | Liste des 22 questions | ✅ 200 OK |
 | GET | `/scenarios/{id}` | Historique de session | ⏳ En attente |
 
-### Documentation interactive
+#### Documentation interactive
 Accédez à `http://localhost:8000/docs` pour la documentation Swagger interactive.
+
+### 🎯 Pour les évaluateurs : Démonstration rapide
+
+Pour tester rapidement l'agent :
+
+1. **Démarrer** : `python main.py`
+2. **Navigateur** : `http://localhost:8000/docs`
+3. **Tester** : POST /hypotheses/start → Execute
+4. **Observer** : Le dialogue commence avec la première question sur les ventes
+5. **Répondre** : Donnez des réponses simples (ex: "épicerie", "30 clients", "150 MAD")
+6. **Vérifier** : À la fin, vous obtenez le JSON complet avec 3 scénarios
+
+### 🔧 Points techniques importants
+
+- **RAG intégré** : Chaque question est enrichie avec le livre Chauvin (280 documents)
+- **Validation en temps réel** : Les règles Chauvin s'appliquent pendant le dialogue
+- **Guardrails** : L'agent détecte si vous posez des questions ou répondez hors sujet
+- **JSON final** : Structure prête pour l'Agent Finance de la plateforme
 
 ## 🧠 Fonctionnalités Clés
 
@@ -228,6 +288,15 @@ POST /hypotheses/start
 ## 🤝 Contribution
 
 Ce projet est développé dans le cadre d'un Projet de Fin d'Études (Licence Data Analytics, FSTT).
+
+### Auteur
+- **Étudiant** : [Votre Nom]
+- **Formation** : Licence Data Analytics
+- **Établissement** : Université Abdelmalek Essaâdi - FSTT
+- **Année** : 2025-2026
+
+### Licence
+Ce projet est sous licence académique.
 
 ## 📞 Support
 
